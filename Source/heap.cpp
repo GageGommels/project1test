@@ -4,6 +4,7 @@
 #include <fstream>
 #include <climits>
 #include <cstdlib>
+#include "math.h"
 using namespace std;
 
 //This function will make a empty heap object with 1 to n capacity
@@ -36,14 +37,14 @@ void insert(heap *h, int flag, int k) {
     (*h).size++;
 
     // Check for the min heap
-    while ((*h).H[((i)/2)].key > (*h).H[i].key && i != 1) {
+    while ((*h).H[i/2].key > (*h).H[i].key && i != 1) {
 
         int temp = (*h).H[i].key;
         (*h).H[i].key = (*h).H[(i)/2].key;
         (*h).H[(i)/2].key = temp;
         i = (i)/2;
     }
-    
+
     if(flag == 2) {
         printJustHeap((*h));
     }
@@ -111,7 +112,7 @@ void printJustHeap (heap h) {
     cout << "The Capacity " << h.capactiy-1 << endl;
     cout << "Size is " << h.size << endl;
     for(int i = 1; i < h.size; i++) {
-        cout << h.H[i].key  <<"\t";
+        cout << h.H[i].key  <<" ";
     }
 
 }
@@ -121,7 +122,7 @@ void printHeap(heap h) {
     cout << "Size is " << h.size << endl;
 
     for(int i = 1; i < h.size + 1; i++) {
-        cout << h.H[i].key  <<"\t";
+        cout << h.H[i].key  <<" ";
     }
         
 }
@@ -145,8 +146,8 @@ void decreaseKey(int i, int val, int flag, heap h) {
     while (h.H[(i-1)/2].key > h.H[i].key && i != 1) {
 
         //does the swap
-        swap(&h.H[(i-1)/2].key, &h.H[i].key);
-        i = (i-1)/2;
+        swap(&h.H[(i)/2].key, &h.H[i].key);
+        i = (i)/2;
     }
     //prints the after change
     if (flag == 2) {

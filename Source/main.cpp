@@ -23,73 +23,41 @@ int main() {
 	while(1) {
 		cin >> input;
 
+		
 		switch (input) {
-			case 'C':
-				cin >> n;
-				h = initalize(n + 1);
-				inialize = true;
-			break;
+			//Does the initalization
+			case 'C': cin >> n; h = initalize(n + 1); inialize = true; break;
 
+			//Stops the program
+			case 'S': return 0;
 
-			case 'S':
-				return 0;
+			//decrease key
+			case 'K': if (inialize == true && insert_elements == true) { cin >> flag; cin >> i; cin >> key_val; decreaseKey(i,v,flag,h);
+				} else { cout << "Sorry!!! It cannot be done. Please inialize the heap first and put the elements into it" << endl;
+				} break;
 
-
-			case 'K':
-				if (inialize == true && insert_elements == true) {
-					cin >> flag;
-					cin >> i;
-					cin >> key_val;
-					decreaseKey(i,v,flag,h);
-				} else {
-					cout << "Sorry!!! It cannot be done. Please inialize the heap first and put the elements into it" << endl;
-				}
-			break;
-
-
-			case 'R':
-				if (inialize == true) {
-					readFile(&h);
-					insert_elements = true;
-				} else {
-					cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;
-				}
-			break;
+			// reads the file
+			case 'R': if (inialize == true) { readFile(&h); insert_elements = true;} else { cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;} break;
 				
 
 
-			case 'W':
-				if (inialize == true) {
-					printHeap(h);
-					
-				} else {
-					cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;
-				}
+			//prints the heap info
+			case 'W': if (inialize == true) { printHeap(h);
+					} else { cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;}
 			break;
 				
 
-
-			case 'I':
-				if (inialize == true) {
-					cin >> key_val;
-					cin >> flag;
-					insert(&h, flag, key_val);
-				} else {
-					cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;
-				}
+			//this is for inserting an element into the heap
+			case 'I': if (inialize == true) { cin >> key_val; cin >> flag; insert(&h, flag, key_val);
+				} else { cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;}
 			break;
 
-
-			case 'D':
-				if (inialize == true && insert_elements == true) {
-					cin >> flag;
-					deleteMin(h,flag);
-				} else {
-					cout << "Sorry!!! It cannot be done. Please inialize the heap first and put the elements into it" << endl;
-				}
+			//to delete the smallest element
+			case 'D': if (inialize == true && insert_elements == true) { cin >> flag; deleteMin(h,flag);} 
+					  else { cout << "Sorry!!! It cannot be done. Please inialize the heap first and put the elements into it" << endl;}
 			break;
 
-
+			//invalid input
 			default: 
 			printf("Invalid input\n");
 		}
