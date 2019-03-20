@@ -17,56 +17,82 @@ int main() {
 	int n, key_val, flag;
 	int i,v;
 	char input;
+	bool inialize = false;
+	bool insert_elements = false;
 
 	while(1) {
-		//print the menu
-		printf("(S): Stops the program.\n");
-		printf("(C n): Create a heap with capacity n.\n");
-		printf("(R): reads the file from inputHeap\n");
-		printf("(W): print the heap and the information with it.\n");
-		printf("(I f k): Insert a value into the heap\n");
-		printf("(D f): to delete the minium element in the heap\n");
-		printf("(K f i v): This will call a function that decreases the key of an index given\n");
-		printf("\n Enter command here: \n");
 		cin >> input;
 
 		switch (input) {
 			case 'C':
 				cin >> n;
 				h = initalize(n + 1);
-				printf("The heap was initalized with capactiy %d\n", n);
-				break;
+				inialize = true;
+			break;
+
+
 			case 'S':
 				return 0;
+
+
 			case 'K':
-				cin >> flag;
-				cin >> i;
-				cin >> key_val;
+				if (inialize == true && insert_elements == true) {
+					cin >> flag;
+					cin >> i;
+					cin >> key_val;
+					decreaseKey(i,v,flag,h);
+				} else {
+					cout << "Sorry!!! It cannot be done. Please inialize the heap first and put the elements into it" << endl;
+				}
+			break;
 
-				decreaseKey(i,v,flag,h);
-				break;
+
 			case 'R':
-				readFile(&h);
-				printf("elements in heap input was put into heap\n");
-				break;
+				if (inialize == true) {
+					readFile(&h);
+					printf("elements in heap input was put into heap\n");
+					insert_elements = true;
+				} else {
+					cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;
+				}
+			break;
+				
+
+
 			case 'W':
-				printHeap(h);
-				break;
+				if (inialize == true) {
+					printHeap(h);
+					
+				} else {
+					cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;
+				}
+			break;
+				
+
+
 			case 'I':
-				cin >> key_val;
-				cin >> flag;
-
-
-				insert(&h, flag, key_val);
+				if (inialize == true) {
+					cin >> key_val;
+					cin >> flag;
+					insert(&h, flag, key_val);
+				} else {
+					cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;
+				}
+				
 				printf("the key was inserted\n");
-				break;
+			break;
+
+
 			case 'D':
-				cin >> flag;
+				if (inialize == true && insert_elements == true) {
+					cin >> flag;
+					deleteMin(h,flag);
+				} else {
+					cout << "Sorry!!! It cannot be done. Please inialize the heap first and put the elements into it" << endl;
+				}
+			break;
 
 
-				deleteMin(h,flag);
-				printf("The root was detleted\n");
-				break;
 			default: 
 			printf("Invalid input\n");
 		}
@@ -82,9 +108,10 @@ void readFile (heap *h) {
 	//creates the size and array for the file
 	int ary[50];
 	int size;
-
-
 	ifstream myfile("HEAPinput.txt");
+
+
+	if(myfile.is_open) {
 		myfile >> size;
 		//calls inset each time we find an element in the array
 		for (int i = 1;i < size+1; i++) {
@@ -93,4 +120,8 @@ void readFile (heap *h) {
 			insert(h , 1 , ary[i]);
 		}
 		myfile.close();
+	} else {
+		cout << "There was a problem opening file HEAPinput.txt for reading" << endl;
+	}
+		
 }
