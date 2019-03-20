@@ -54,6 +54,9 @@ void insert(heap *h, int flag, int k) {
 //This function is to delete the minimum element in the heap which should be the root
 int deleteMin(heap h,int flag) {
     int min;
+    if(h.size == 0) {
+        cout << "There are no elements in heap to delete" << endl;
+    }
     if (flag == 2) {
         printJustHeap(h);
     }
@@ -109,7 +112,7 @@ void printJustHeap (heap h) {
     printf("Index   Element\n");
 
     for(int i = 1; i < h.size; i++) {
-        cout << h.H[i].key  <<"\t" << endl;
+        cout << h.H[i].key  <<"\t" << end;
     }
 
 }
@@ -117,9 +120,9 @@ void printJustHeap (heap h) {
 void printHeap(heap h) {
     cout << "The Capacity " << h.capactiy-1 << endl;
     cout << "Size is " << h.size << endl;
-    
+
     for(int i = 1; i < h.size + 1; i++) {
-        cout << h.H[i].key  <<"\t" << endl;
+        cout << h.H[i].key  <<"\t" << end;
     }
         
 }

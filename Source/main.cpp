@@ -50,7 +50,6 @@ int main() {
 			case 'R':
 				if (inialize == true) {
 					readFile(&h);
-					printf("elements in heap input was put into heap\n");
 					insert_elements = true;
 				} else {
 					cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;
@@ -78,8 +77,6 @@ int main() {
 				} else {
 					cout << "Sorry!!! It cannot be done. Please inialize the heap first" << endl;
 				}
-				
-				printf("the key was inserted\n");
 			break;
 
 
@@ -102,23 +99,55 @@ int main() {
 }
 
 
-//This Function is to read the from a file
+//this funtion was origionally my read funtion but it slowly became my Build Heap function and due to me being scared to refactor the name for all of the assignemnt I am leaving it as readFile
 void readFile (heap *h) {
 	
 	//creates the size and array for the file
 	int ary[50];
 	int size;
 	fstream myfile;
+	int counter = 0;
 
 	myfile.open ("HEAPinput.txt");
 
 
 	if(myfile.is_open()) {
+		if(size > h->capactiy) {
+			cout << "Sorry!!! It cannot be done. Please increase the capacity of the heap first!" << endl;
+			myfile.close();
+			return;
+		}
 		myfile >> size;
 		//calls inset each time we find an element in the array
+
+		//inserts the elements into an array
 		for (int i = 1;i < size+1; i++) {
 			myfile >> ary[i];
+		}
 
+
+		//counter for the array
+		for(int i = 1;i < size+1; i++) {
+			if(ary[i] != 0) {
+				counter++;
+			}
+		}
+
+		//checks to see if the number of element matches the specified size at the begining
+		if(counter != size) {
+			cout << "Sorry!!! It cannot be done. The number of elements in file is less than specified in the beginning of file" << endl;
+			myfile.close();
+			return;
+		}
+
+		//Checks to see if the size will fit the capacity
+		if(size > h->capactiy) {
+			cout << "Sorry!!! It cannot be done. Please increase the capacity of the heap first!" << endl;
+			myfile.close();
+			return;
+		}
+		//inserts the elements into the array
+		for (int i = 1;i < size+1; i++) {
 			insert(h , 1 , ary[i]);
 		}
 		myfile.close();
