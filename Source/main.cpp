@@ -108,10 +108,12 @@ void readFile (heap *h) {
 	//creates the size and array for the file
 	int ary[50];
 	int size;
-	ifstream myfile("HEAPinput.txt");
+	fstream myfile;
+
+	myfile.open ("HEAPinput.txt");
 
 
-	if(myfile.is_open == true) {
+	if(myfile.is_open()) {
 		myfile >> size;
 		//calls inset each time we find an element in the array
 		for (int i = 1;i < size+1; i++) {
