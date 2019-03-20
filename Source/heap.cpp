@@ -9,9 +9,9 @@ using namespace std;
 //This function will make a empty heap object with 1 to n capacity
 heap initalize(int k) {
     struct heap h;
+    h.H = (element*)malloc(sizeof(element)*h.capactiy);
     h.capactiy = k;
     h.size = 0;
-    h.H = (element*)malloc(sizeof(element)*h.capactiy);
     return h;
 }
 //this function will create a heap data structor and insert elements from array[]input
@@ -36,13 +36,13 @@ void insert(heap *h, int flag, int k) {
     (*h).size++;
 
     //Check for the min heap
-    while ((*h).H[((i-1)/2)].key > (*h).H[i].key && i != 1) {
+    while ((*h).H[((i)/2)].key > (*h).H[i].key && i != 1) {
 
         //swap(&h->H[i].key, &h->H[(i-1)/2].key);
         int temp = (*h).H[i].key;
-        (*h).H[i].key = (*h).H[(i-1)/2].key;
-        (*h).H[(i-1)/2].key = temp;
-        i = (i-1)/2;
+        (*h).H[i].key = (*h).H[(i)/2].key;
+        (*h).H[(i)/2].key = temp;
+        i = (i)/2;
     }
     
     if(flag == 2) {
@@ -108,9 +108,9 @@ void minHeapify(heap h,int i) {
 }
 //This is to print just the indexes and the elements in the heap
 void printJustHeap (heap h) {
-    printf("Heap Elements: \n");
-    printf("Index   Element\n");
-
+    
+    cout << "The Capacity " << h.capactiy-1 << endl;
+    cout << "Size is " << h.size << endl;
     for(int i = 1; i < h.size; i++) {
         cout << h.H[i].key  <<"\t";
     }
