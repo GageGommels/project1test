@@ -109,22 +109,17 @@ void printJustHeap (heap h) {
     printf("Index   Element\n");
 
     for(int i = 1; i < h.size; i++) {
-        cout << i <<"   " <<h.H[i].key << endl;
+        cout << h.H[i].key  <<"\t" << endl;
     }
 
 }
 //This is the print function, it will print the capacity, the size and the index and the value at the array
 void printHeap(heap h) {
-    printf("Heap Info:\n");
-    cout << "Capacity: " << h.capactiy-1 << endl;
-    cout << "Size: " << h.size << endl;
-    // printf("Capacity: %d\n" + h.capactiy);
-    //printf("Size: %d\n" + h.size);
-    printf("Heap Elements: \n");
-    printf("Index   Element\n");
-
+    cout << "The Capacity " << h.capactiy-1 << endl;
+    cout << "Size is " << h.size << endl;
+    
     for(int i = 1; i < h.size + 1; i++) {
-        cout << "   " << i << "     " <<h.H[i].key << endl;
+        cout << h.H[i].key  <<"\t" << endl;
     }
         
 }
