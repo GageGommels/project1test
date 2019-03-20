@@ -112,7 +112,7 @@ void printJustHeap (heap h) {
     printf("Index   Element\n");
 
     for(int i = 1; i < h.size; i++) {
-        cout << h.H[i].key  <<"\t" << end;
+        cout << h.H[i].key  <<"\t";
     }
 
 }
@@ -122,7 +122,7 @@ void printHeap(heap h) {
     cout << "Size is " << h.size << endl;
 
     for(int i = 1; i < h.size + 1; i++) {
-        cout << h.H[i].key  <<"\t" << end;
+        cout << h.H[i].key  <<"\t";
     }
         
 }
