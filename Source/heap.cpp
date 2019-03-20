@@ -36,15 +36,14 @@ void insert(heap *h, int flag, int k) {
     (*h).size++;
 
     //Check for the min heap
-    while ((*h).H[((i)/2)].key > (*h).H[i].key && i != 1) {
+    // while ((*h).H[((i)/2)].key > (*h).H[i].key && i != 1) {
 
-        //swap(&h->H[i].key, &h->H[(i-1)/2].key);
-        int temp = (*h).H[i].key;
-        (*h).H[i].key = (*h).H[(i)/2].key;
-        (*h).H[(i)/2].key = temp;
-        i = (i)/2;
-    }
-    
+    //     // int temp = (*h).H[i].key;
+    //     // (*h).H[i].key = (*h).H[(i)/2].key;
+    //     // (*h).H[(i)/2].key = temp;
+    //     // i = (i)/2;
+    // }
+    minHeapify((*h) , 0);
     if(flag == 2) {
         printJustHeap((*h));
     }
@@ -90,8 +89,8 @@ void swap (int *y, int *x) {
 
 //Constructs a min heap from the arry inside of the object
 void minHeapify(heap h,int i) {
-    int left =  (2 * i + 1);
-    int right = (2 * i + 2);
+    int left =  (2 * i);
+    int right = (2 * i + 1);
 
     int small = i;
 
