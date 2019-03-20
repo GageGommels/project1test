@@ -112,13 +112,9 @@ void readFile (heap *h) {
 
 
 	if(myfile.is_open()) {
-		if(size > h->capactiy) {
-			cout << "Sorry!!! It cannot be done. Please increase the capacity of the heap first!" << endl;
-			myfile.close();
-			return;
-		}
+		
+		//gets the provided size of the array
 		myfile >> size;
-		//calls inset each time we find an element in the array
 
 		//inserts the elements into an array
 		for (int i = 1;i < size+1; i++) {
