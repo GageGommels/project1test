@@ -35,15 +35,15 @@ void insert(heap *h, int flag, int k) {
     (*h).H[i].key = k;
     (*h).size++;
 
-    //Check for the min heap
-    // while ((*h).H[((i)/2)].key > (*h).H[i].key && i != 1) {
+    // Check for the min heap
+    while ((*h).H[((i)/2)].key > (*h).H[i].key && i != 1) {
 
-    //     // int temp = (*h).H[i].key;
-    //     // (*h).H[i].key = (*h).H[(i)/2].key;
-    //     // (*h).H[(i)/2].key = temp;
-    //     // i = (i)/2;
-    // }
-    minHeapify((*h) , 0);
+        int temp = (*h).H[i].key;
+        (*h).H[i].key = (*h).H[(i)/2].key;
+        (*h).H[(i)/2].key = temp;
+        i = (i)/2;
+    }
+    
     if(flag == 2) {
         printJustHeap((*h));
     }
